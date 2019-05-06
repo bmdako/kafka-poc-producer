@@ -7,7 +7,6 @@ const KAFKA_INGRESS_TOPIC = process.env.KAFKA_INGRESS_TOPIC;
 
 if(!KAFKA_INGRESS_TOPIC) {
   console.error('Kafka ingress topic missing');
-  process.exit(1);
 }
 
 module.exports = {
@@ -33,6 +32,11 @@ module.exports = {
             partition: 0
           }
         ];
+
+        if(!KAFKA_INGRESS_TOPIC) {
+          console.error('Kafka ingress topic missing');
+          return;
+        }
 
         return new Promise((resolve, reject) => {
           try {
