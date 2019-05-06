@@ -20,6 +20,14 @@ const server = Hapi.server({
 server.register(Scheme);
 server.register(Events, { routes: { prefix: '/events' } });
 
+server.route({
+  method: 'GET',
+  path: '/healthcheck',
+  handler: (request, h) => {
+      return 'OK';
+  }
+});
+
 Kafka.on('ready', async () => {
   await server.start();
   console.log('Server running on %s', server.info.uri);
