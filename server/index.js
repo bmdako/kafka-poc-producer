@@ -22,6 +22,14 @@ server.register(Events, { routes: { prefix: '/events' } });
 
 server.route({
   method: 'GET',
+  path: '/',
+  handler: (request, h) => {
+      return 'OK';
+  }
+});
+
+server.route({
+  method: 'GET',
   path: '/healthcheck',
   handler: (request, h) => {
       return 'OK';
