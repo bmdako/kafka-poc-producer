@@ -16,10 +16,9 @@ RUN wget -O - https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-x64
 # Set the working directory.
 WORKDIR /app
 
-# Copying the code into image. Be aware no config files are including.
-COPY ./node_modules /app/node_modules
-COPY ./server /app/server
-COPY ./package.json /app/package.json
+ADD . /app
+
+RUN npm i --production
 
 # Exposing our endpoint to Docker.
 EXPOSE 8000
